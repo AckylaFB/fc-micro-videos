@@ -13,6 +13,7 @@ export class Category {
   constructor(public readonly props: CategoryProps, id?: UniqueEntityId) {
     this.id = id ?? new UniqueEntityId();
     this.description = props.description ?? null;
+    this.props.name = props.name;
     this.props.is_active = props.is_active ?? true;
     this.props.created_at = props.created_at ?? new Date();
   }
@@ -34,7 +35,7 @@ export class Category {
   }
 
   private set is_active(value: boolean) {
-    this.props.is_active = value ?? null;
+    this.props.is_active = value;
   }
 
   get created_at(): Date {

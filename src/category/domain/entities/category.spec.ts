@@ -1,4 +1,4 @@
-import { validate } from 'uuid';
+import UniqueEntityId from '../../../@seedwork/domain/unique-entity-id.vo';
 import { Category } from './category';
 
 describe('Category constructor', () => {
@@ -13,8 +13,22 @@ describe('Category constructor', () => {
       is_active: true,
       created_at: expect.any(Date),
     });
+  });
 
-    expect(validate(category.id)).toBeTruthy();
+  test('category constructor with id', () => {
+    const data = [
+      { props: { name: 'Movie' } },
+      { props: { name: 'Movie' }, id: null },
+      { props: { name: 'Movie' }, id: undefined },
+      { props: { name: 'Movie' }, id: new UniqueEntityId() },
+    ];
+
+    data.forEach(item => {
+      const category = new Category(item.props, item.id);
+
+      expect(category.id).not.toBeNull();
+      expect(category.id).toBeInstanceOf(UniqueEntityId);
+    });
   });
 
   test('category constructor with description', () => {
@@ -23,6 +37,7 @@ describe('Category constructor', () => {
       description: 'Movie description',
     });
 
+    expect(category.name).toBe('Movie');
     expect(category.description).toBe('Movie description');
 
     // eslint-disable-next-line dot-notation
