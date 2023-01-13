@@ -23,7 +23,7 @@ describe('UniqueEntityId', () => {
   it('should generate a valid uuid when no id is provided', () => {
     const validateSpy = jest.spyOn(UniqueEntityId.prototype as any, 'validate');
     const vo = new UniqueEntityId();
-    expect(uuidValidate(vo.id)).toBeTruthy();
+    expect(uuidValidate(vo.value)).toBeTruthy();
     expect(validateSpy).toHaveBeenCalled();
   });
 });

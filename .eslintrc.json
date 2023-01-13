@@ -26,7 +26,10 @@
               "js": "never",
               "ts": "never"
             }
-         ]
+         ],
+        "no-underscore-dangle": "off",
+        "import/prefer-default-export": "off",
+        "no-restricted-syntax": "off"
     },
     "settings": {
         "import/resolver": {

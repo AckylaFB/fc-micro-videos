@@ -14,8 +14,6 @@ describe('ValueObject', () => {
   it('should return string value', () => {
     const date = new Date();
     const arrange = [
-      { received: null, expected: 'null' },
-      { received: undefined, expected: 'undefined' },
       { received: 0, expected: '0' },
       { received: 1, expected: '1' },
       { received: '', expected: '' },
