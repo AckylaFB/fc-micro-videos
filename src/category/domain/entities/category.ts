@@ -25,16 +25,8 @@ export class Category extends Entity<CategoryProps> {
     return this.props.description;
   }
 
-  // private set description(value: string) {
-  //   this.props.description = value ?? null;
-  // }
-
   get is_active(): boolean {
     return this.props.is_active;
-  }
-
-  private set is_active(value: boolean) {
-    this.props.is_active = value;
   }
 
   get created_at(): Date {
@@ -47,5 +39,13 @@ export class Category extends Entity<CategoryProps> {
 
   updateDescription(description: string) {
     this.props.description = description;
+  }
+
+  activate() {
+    this.props.is_active = true;
+  }
+
+  deactivate() {
+    this.props.is_active = false;
   }
 }

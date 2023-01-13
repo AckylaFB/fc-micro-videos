@@ -48,10 +48,6 @@ describe('Category constructor', () => {
     });
 
     expect(category.is_active).toBeFalsy();
-
-    // eslint-disable-next-line dot-notation
-    category['is_active'] = true;
-    expect(category.is_active).toBeTruthy();
   });
 
   test('category constructor with created_at', () => {
@@ -75,5 +71,18 @@ describe('Category constructor', () => {
 
     expect(category.name).toBe('Movie 2');
     expect(category.description).toBe('Movie description 2');
+  });
+
+  it('should activate and deactivate the category', () => {
+    const category = new Category({
+      name: 'Movie',
+      is_active: false,
+    });
+
+    category.activate();
+    expect(category.is_active).toBeTruthy();
+
+    category.deactivate();
+    expect(category.is_active).toBeFalsy();
   });
 });
