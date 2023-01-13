@@ -39,10 +39,6 @@ describe('Category constructor', () => {
 
     expect(category.name).toBe('Movie');
     expect(category.description).toBe('Movie description');
-
-    // eslint-disable-next-line dot-notation
-    category['description'] = 'Movie description 2';
-    expect(category.description).toBe('Movie description 2');
   });
 
   test('category constructor with is_active', () => {
@@ -66,5 +62,18 @@ describe('Category constructor', () => {
 
     expect(category.created_at).toBeInstanceOf(Date);
     expect(category.created_at).toEqual(new Date('2020-01-01'));
+  });
+
+  it('should update the category`s name and description', () => {
+    const category = new Category({
+      name: 'Movie',
+      description: 'Movie description',
+    });
+
+    category.updateName('Movie 2');
+    category.updateDescription('Movie description 2');
+
+    expect(category.name).toBe('Movie 2');
+    expect(category.description).toBe('Movie description 2');
   });
 });

@@ -11,7 +11,7 @@ export type CategoryProps = {
 export class Category extends Entity<CategoryProps> {
   constructor(public readonly props: CategoryProps, id?: UniqueEntityId) {
     super(props, id);
-    this.description = props.description ?? null;
+    this.props.description = props.description ?? null;
     this.props.name = props.name;
     this.props.is_active = props.is_active ?? true;
     this.props.created_at = props.created_at ?? new Date();
@@ -25,9 +25,9 @@ export class Category extends Entity<CategoryProps> {
     return this.props.description;
   }
 
-  private set description(value: string) {
-    this.props.description = value ?? null;
-  }
+  // private set description(value: string) {
+  //   this.props.description = value ?? null;
+  // }
 
   get is_active(): boolean {
     return this.props.is_active;
@@ -39,5 +39,13 @@ export class Category extends Entity<CategoryProps> {
 
   get created_at(): Date {
     return this.props.created_at;
+  }
+
+  updateName(name: string) {
+    this.props.name = name;
+  }
+
+  updateDescription(description: string) {
+    this.props.description = description;
   }
 }
